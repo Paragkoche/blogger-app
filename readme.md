@@ -44,27 +44,27 @@ npm init
 npm install express typeorm jsonwebtoken bcryptjs
 ```
 
-# Database Configuration
+## Database Configuration
 
 Set up a connection to the database using TypeORM. Create entities for BlogPosts, Users, etc.
 
-# Authentication
+## Authentication
 
 Implement user registration and login routes using JWT for token-based authentication. Apply 2-level password hashing using bcryptjs.
 
-# Blogging Functionality
+## Blogging Functionality
 
 Implement CRUD operations for blog posts. Ensure that only authenticated users can create, update, or delete their blog posts.
 
-# Middleware
+## Middleware
 
 Create middleware to check JWT tokens for authentication.
 
-# Error Handling
+## Error Handling
 
 Implement error handling for better user feedback.
 
-# Testing
+## Testing
 
 Write unit tests for your routes and functions.
 
@@ -77,31 +77,31 @@ Create a new Next.js project with TypeScript:
 npx create-next-app my-blog-app --typescript
 ```
 
-# API Integration
+## API Integration
 
 Use Next.js API routes to connect with your backend. Implement functions for fetching and displaying blog posts.
 
-# Authentication Flow
+## Authentication Flow
 
 Create login and registration pages. Use cookies or local storage to store JWT tokens.
 
-# Blogging Interface
+## Blogging Interface
 
 Build a page for displaying blog posts. Implement a form for creating and updating blog posts.
 
-# Routing
+## Routing
 
 Set up routing for different pages and blog posts.
 
-# Styling
+## Styling
 
 Style your components using CSS or a styling library (e.g., styled-components).
 
-# Error Handling (Frontend)
+## Error Handling (Frontend)
 
 Implement error handling for API calls and form submissions.
 
-# Testing (Frontend)
+## Testing (Frontend)
 
 Test your components and pages.
 
