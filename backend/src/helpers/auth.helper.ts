@@ -7,7 +7,7 @@ import { verifyToken } from "@/utility/jwt";
 import { AdminRepo, UserRepo } from "@/database";
 export const AdminToken: AdminTokenFunction = async (req, res, next) => {
   try {
-    const token = req.headers.authorization;
+    const token = req.cookies.token;
     if (!token) {
       log("error", "[ERROR] token not found", req.headers);
       return res.status(401).json({
@@ -47,7 +47,7 @@ export const AdminToken: AdminTokenFunction = async (req, res, next) => {
 
 export const UserToken: UserTokenFunction = async (req, res, next) => {
   try {
-    const token = req.headers.authorization;
+    const token = req.cookies.token;
     if (!token) {
       log("error", "[ERROR] token not found", req.headers);
       return res.status(401).json({
