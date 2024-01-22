@@ -2,6 +2,7 @@ import {
   BeforeInsert,
   Column,
   Entity,
+  JoinColumn,
   // JoinColumn,
   ManyToOne,
   OneToMany,
@@ -23,10 +24,10 @@ export class Users {
   password: string;
 
   @ManyToOne(() => Admin, (admin) => admin.subs)
-  // @JoinColumn()
+  @JoinColumn()
   subs: Admin;
   @OneToMany(() => comments, (cmt) => cmt.user)
-  // @JoinColumn()
+  @JoinColumn()
   comments: comments[];
 
   @BeforeInsert()

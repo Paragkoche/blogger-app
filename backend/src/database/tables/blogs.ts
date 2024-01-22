@@ -12,6 +12,9 @@ export class blogs {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   @Column()
+  slug:string;
+  
+  @Column()
   title: string;
   @Column()
   image: string;
