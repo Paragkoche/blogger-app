@@ -1,17 +1,25 @@
 import { AdminRepo, BlogRepo } from "@/database";
-import { SignInType } from "@/helpers/admin.validate";
+import { LoginType, SignInType } from "@/helpers/admin.validate";
 import { log } from "@/helpers/console";
 import {
   HomeDataFunction,
   LogInFunction,
   signInFunction,
 } from "@/types/admin.controller.types";
-import { AdminSingInBodyType } from "@/types/body.type";
+import { AdminLogInBodyType, AdminSingInBodyType } from "@/types/body.type";
 import { createToken } from "@/utility/jwt";
 import { password_verify } from "@/utility/password";
 
 export const HomeData: HomeDataFunction = async (req, res) => {
   try {
+    const subs = await AdminRepo.find({
+      where:{
+        id:req.AdminUser.id
+      },
+      relations:{
+        subs:true
+      },
+    })
     const blogs = await BlogRepo.find({
       where: {
         admin: {
@@ -22,6 +30,7 @@ export const HomeData: HomeDataFunction = async (req, res) => {
     return res.json({
       data: {
         blogs,
+        subs:subs[0].subs,
       },
     });
   } catch (e) {
@@ -48,16 +57,13 @@ export const SignIn: signInFunction = async (req, res) => {
     }
     const UserData =await AdminRepo.findOne({
       where:[
-        
         {
           username:UserDataBody.data.username
         },
         {
           emailId:UserDataBody.data.emailId
         }
-        
       ],
-      
     });
     if(UserData){
       return res.status(401).json({
@@ -69,7 +75,6 @@ export const SignIn: signInFunction = async (req, res) => {
         UserDataBody.data
       )
     );
-
       res.cookie("token",createToken({
         id:newUserData.id,
         role:"Admin"
@@ -90,7 +95,7 @@ export const SignIn: signInFunction = async (req, res) => {
 
 export const LogInController:LogInFunction =async(req,res)=>{
   try {
-    const UserDataBody: AdminSingInBodyType = SignInType.safeParse(req.body);
+    const UserDataBody: AdminLogInBodyType = LoginType.safeParse(req.body);
     if (!UserDataBody.success) {
       log("error", "Body data invalid", req.body);
       return res
@@ -104,16 +109,13 @@ export const LogInController:LogInFunction =async(req,res)=>{
     }
     const UserData =await AdminRepo.findOne({
       where:[
-        
         {
           username:UserDataBody.data.username
         },
         {
           emailId:UserDataBody.data.emailId
-        }
-        
-      ],
-      
+        } 
+      ],  
     });
     if(!UserData){
       return res.status(401).json({
@@ -130,14 +132,11 @@ export const LogInController:LogInFunction =async(req,res)=>{
       id:UserData.id,
       role:'Admin'
     }));
-    console.log("info","User login",`[${UserData.id}]`);
-    
+    log("info","User login",`[${UserData.id}]`);
     return res.json({
       message:'[Info] User Login',
       data:UserData
     });
-
-    
   } catch (e) {
     log("error", "[server error]", e);
     return res.status(500).json({
@@ -145,3 +144,4 @@ export const LogInController:LogInFunction =async(req,res)=>{
     });
   }
 }
+

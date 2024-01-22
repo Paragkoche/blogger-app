@@ -18,6 +18,10 @@ export class blogs {
   @Column()
   description: string;
 
+  @Column()
+  views:string;
+
+
   @ManyToOne(() => Admin, (admin) => admin.blogs)
   @JoinColumn()
   admin: Admin;

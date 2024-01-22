@@ -4,7 +4,7 @@
     "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
-    "types": ["node", "jest"],
+    "types": [ "cypress","node",],
     "lib": ["es5", "es6"],
     "outDir": "build",
     "allowSyntheticDefaultImports": true,
@@ -13,9 +13,10 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "importHelpers": true,
+    "inlineSourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
+    // "sourceMap": true,
     "noImplicitAny": true,
     "declaration": true,
     "noFallthroughCasesInSwitch": true,
@@ -27,8 +28,9 @@
     "downlevelIteration": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    
   },
   "include": ["sample", "src", "test"],
-  "exclude": ["tmp", "temp", "build", "node_modules"]
+  "exclude": ["tmp", "temp", "build", "node_modules","cypress.config.ts", "cypress", "node_modules"]
 }

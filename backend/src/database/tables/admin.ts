@@ -4,6 +4,8 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  // JoinColumn,
+  // JoinTable,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -24,7 +26,7 @@ export class Admin {
   @Column({ unique: true })
   username: string;
 
-  @Column()
+  @Column({nullable:true})
   bio: string;
 
   @CreateDateColumn()
@@ -33,7 +35,7 @@ export class Admin {
   @OneToMany(() => blogs, (blog) => blog.admin)
   @JoinColumn()
   blogs: blogs[];
-  @OneToMany(() => Users, (usr) => usr)
+  @OneToMany(() => Users, (usr) => usr.subs)
   @JoinColumn()
   subs: Users[];
 

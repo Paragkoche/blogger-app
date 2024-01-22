@@ -1,0 +1,10 @@
+import { defineConfig } from "cypress";
+
+export default defineConfig({
+  e2e: {
+    baseUrl:"http://localhost:8081/api/v1",
+    screenshotOnRunFailure:false,
+    video:false,
+    
+  },
+});
