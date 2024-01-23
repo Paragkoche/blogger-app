@@ -1,4 +1,3 @@
-
 import { LogInController, SingIn } from "@/controller/User.controller";
 import { Router } from "express";
 
