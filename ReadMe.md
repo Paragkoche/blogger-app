@@ -89,3 +89,29 @@
 |   tsconfig.json
 
 ```
+
+### Frontend
+
+```bash
+
++---public
+|       next.svg
+|       vercel.svg
+|
++---src
+|   \---app
+|           favicon.ico
+|           globals.css
+|           layout.tsx
+|           page.module.css
+|           page.tsx
+|   .gitignore
+|   next-env.d.ts
+|   next.config.js
+|   package-lock.json
+|   package.json
+|   README.md
+|   tree.txt
+|   tsconfig.json
+|
+```
