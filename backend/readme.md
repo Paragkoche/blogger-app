@@ -95,9 +95,9 @@ const LoginUser = axios.post(loginUrl, body);
 
 Response body schema
 
-200
+[200](#user-login-response-body-schema)
 
-401
+[401](#user-login-response-body-schema)
 
 #### Admin End point
 
