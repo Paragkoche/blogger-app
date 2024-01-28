@@ -3,6 +3,8 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   // JoinColumn,
   ManyToOne,
   OneToMany,
@@ -13,6 +15,7 @@ import { Admin } from "./admin";
 import { log } from "@/helpers/console";
 import { SHA512, enc } from "crypto-js";
 import { genSalt, hash } from "bcrypt";
+import { blogs } from "./blogs";
 
 @Entity()
 export class Users {
@@ -29,7 +32,9 @@ export class Users {
   @OneToMany(() => comments, (cmt) => cmt.user)
   @JoinColumn()
   comments: comments[];
-
+  @ManyToMany(() => blogs, (blg) => blg.likeBy)
+  @JoinTable()
+  blogLike: blogs[];
   @BeforeInsert()
   async password_hashing(password: string) {
     let planPassword = this.password || password;

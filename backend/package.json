@@ -9,6 +9,7 @@
     "start": "node build/index.js",
     "dev": "nodemon -q src/index.ts"
   },
+  "nodemonConfig": "nodemon.json",
   "keywords": [],
   "author": "",
   "license": "ISC",
