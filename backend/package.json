@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "cypress open",
     "start": "node build/index.js",
     "dev": "nodemon -q src/index.ts"
   },
