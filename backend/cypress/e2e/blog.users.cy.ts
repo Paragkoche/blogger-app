@@ -4,7 +4,7 @@ describe("Blog API TESTING", () => {
   beforeEach("get blogs", () => {
     cy.request("GET", "/blog/parag").then((res) => {
       cy.log(res.body);
-      blogs.push(res.body.data);
+      blogs.push(...res.body.data);
     });
   });
   beforeEach("Login by username", () => {
@@ -30,7 +30,7 @@ describe("Blog API TESTING", () => {
       });
     });
     it("add like", () => {
-      cy.log(blogs[0][0]);
+      cy.log(blogs[0]);
       cy.request({
         method: "POST",
         url: "/blog/add-like",
@@ -47,7 +47,39 @@ describe("Blog API TESTING", () => {
         cy.log(res.body);
       });
     });
-    it("delete like", () => {});
-    it("add sub", () => {});
+    it("delete like", () => {
+      cy.request({
+        method: "DELETE",
+        url: "/blog/delete-like",
+        failOnStatusCode: false,
+        body: {
+          blogId: blogs[0].id,
+        },
+        headers: {
+          cookies: {
+            token,
+          },
+        },
+      }).then((res) => {
+        cy.log(res.body);
+      });
+    });
+    it("add sub", () => {
+      cy.request({
+        method: "POST",
+        url: "/blog/add-sub",
+        failOnStatusCode: false,
+        body: {
+          AdminId: blogs[0].admin.id,
+        },
+        headers: {
+          cookies: {
+            token,
+          },
+        },
+      }).then((res) => {
+        cy.log(res.body);
+      });
+    });
   });
 });

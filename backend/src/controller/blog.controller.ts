@@ -276,6 +276,7 @@ export const GetAllBlogsController: GetAllBlogsControllerFunctionType = async (
       },
       select: {
         admin: {
+          id: true,
           username: true,
           joinedAt: true,
           bio: true,
@@ -310,7 +311,14 @@ export const GetBlogController: GetBlogControllerFunctionType = async (
 
         slug: blog_slug,
       },
-
+      select: {
+        admin: {
+          id: true,
+          username: true,
+          joinedAt: true,
+          bio: true,
+        },
+      },
       relations: {
         admin: true,
       },
