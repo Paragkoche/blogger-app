@@ -9,3 +9,12 @@ export type HomeDataFunction = (
 export type signInFunction = (req: Request, res: Response) => Promise<Response>;
 export type LogInFunction = (req: Request, res: Response) => Promise<Response>;
 
+export type UpdateAdminDataFunctionType = (
+  req: AdminRequest,
+  res: Response
+) => Promise<Response>;
+
+export type DeleteAdminDataFunctionType = (
+  req: AdminRequest,
+  res: Response
+) => Promise<Response>;

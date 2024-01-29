@@ -99,6 +99,75 @@ Response body schema
 
 [401](#user-login-response-body-schema)
 
+##### Sing In
+
+##### User Sing In request body schema
+
+```json
+{
+  "emailId": "$string",
+  "password": "$string"
+}
+```
+
+##### User Sing In response body schema
+
+- `200`
+
+```Json
+    {
+        "message":"[Info] User Login",
+        "data": "$user-schema"
+    }
+
+```
+
+- `401` (`if invalid body`)
+
+```json
+    [
+    ...
+        {
+            "label":"$string",
+            "message":"$string"
+        }
+    ...
+    ]
+
+```
+
+- `401` (`if email id not exists`)
+
+```json
+{
+  "message": "[error] email Id or username Not exists"
+}
+```
+
+- `401` (`if password not valid`)
+
+```json
+{
+  "message": "[error] password not valid"
+}
+```
+
 #### Admin End point
+
+#### Schema
+
+##### Admin Schema (`Admin schema`)
+
+```JSON
+{
+    "id":"$UUID",
+    "emailId":"$string",
+    "password":"$string",
+    "username":"$string",
+    "bio":"$string",
+    "joinedAt":"$Date",
+}
+
+```
 
 #### Blog End point

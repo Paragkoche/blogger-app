@@ -1,4 +1,8 @@
-import { LoginType, SignInType } from "@/helpers/admin.validate";
+import {
+  LoginType,
+  SignInType,
+  UpdateAdminType,
+} from "@/helpers/admin.validate";
 import {
   AddLinkBlogBody,
   AddSubBody,
@@ -48,4 +52,9 @@ export type deleteBlogBodyType = z.SafeParseReturnType<
 export type addSubBodyType = z.SafeParseReturnType<
   z.infer<typeof AddSubBody>,
   z.infer<typeof AddSubBody>
+>;
+
+export type AdminUpdateBodyType = z.SafeParseReturnType<
+  z.infer<typeof UpdateAdminType>,
+  z.infer<typeof UpdateAdminType>
 >;

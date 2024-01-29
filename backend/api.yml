@@ -1,0 +1,173 @@
+openapi: '3.0.2'
+info:
+  title: Blog app
+  version: '1.0'
+servers:
+  - url: http://localhost:8081/api/v1
+paths:
+  /admin/admin-login:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/admin-login"
+      
+
+      responses:
+        200:
+          description: everything is good.
+          content:
+            application/json:
+              schema: 
+                type: "object"
+                properties:
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/admin-schema"
+          headers: 
+            Set-Cookie:
+              schema: 
+                type: string
+                example: token=JWT_Token; Path=/; HttpOnly
+        401:
+          description: Error 
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/admin-missing-body'
+                  - $ref: "#/components/schemas/admin-emailId-or-username-invalid-or-exists"
+                  - $ref: "#/components/schemas/admin-password-invalid"
+        500:
+          description:  Internal server Error
+          content:
+            application/json:
+              schema: 
+                type: "object"
+                properties:
+                  message:
+                    type: string
+  /admin/admin-sign-in:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/admin-sign-in-body"
+      
+
+      responses:
+        200:
+          description: everything is good.
+          content:
+            application/json:
+              schema: 
+                type: "object"
+                properties:
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/admin-schema"
+          headers: 
+            Set-Cookie:
+              schema: 
+                type: string
+                example: token=JWT_Token; Path=/; HttpOnly
+        401:
+          description: Error 
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/admin-missing-body'
+                  - $ref: "#/components/schemas/admin-emailId-or-username-invalid-or-exists"
+                  - $ref: "#/components/schemas/admin-password-invalid"
+        500:
+          description:  Internal server Error
+          content:
+            application/json:
+              schema: 
+                type: "object"
+                properties:
+                  message:
+                    type: string
+  # /update-user:
+  #   post: 
+
+
+components:
+  schemas:
+    admin-schema:
+      title: "Admin schema"
+      type:  "object"
+      properties:
+        id: 
+          type: string
+        emailId:
+          type: string
+        password: 
+          type:  string
+        username:
+          type:  string
+        bio:
+          type: string
+        joinedAt:
+          type:  string
+    
+    admin-sign-in-body:
+      title: "Admin sign in body"
+      type: "object"
+      properties:
+        emailId:
+          type: string
+        password:
+          type: string
+        username: 
+          type: string
+        bio:
+          type: string
+      required:
+        - "emailId"
+        - "password"
+        - "username"
+
+    admin-missing-body:
+        title: "Admin missing request body"
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            
+            message:
+              type: string
+            label:
+              type: string
+    admin-emailId-or-username-invalid-or-exists:
+      title: "Admin emailId or username"
+      type: "object"
+      properties:
+        message: 
+          type: string
+    
+    admin-password-invalid:
+      title:  "Admin password invalid"
+      type: "object"
+      properties:
+        message:
+          type: string
+    
+    admin-login:
+      title: "Admin login body"
+      type: "object"
+      properties:
+        emailId: 
+          type: string
+        password:
+          type: string
+        username:
+          type: string
+      required:
+        - "emailId"
+        - "password"
