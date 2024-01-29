@@ -48,3 +48,9 @@ export const AddSubBody = z.object({
     message: "[Data Error] is not valid blog Id or uuid",
   }),
 });
+
+export const addCommentToBlogBody = z.object({
+  comment: z.string().min(1, {
+    message: "[Data Error] comment not valid or minim 1 charter",
+  }),
+});

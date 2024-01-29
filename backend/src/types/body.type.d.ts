@@ -7,6 +7,7 @@ import {
   AddLinkBlogBody,
   AddSubBody,
   addBlogBody,
+  addCommentToBlogBody,
   deleteBlogBody,
   deleteLikeBody,
 } from "@/helpers/body.validate";
@@ -57,4 +58,9 @@ export type addSubBodyType = z.SafeParseReturnType<
 export type AdminUpdateBodyType = z.SafeParseReturnType<
   z.infer<typeof UpdateAdminType>,
   z.infer<typeof UpdateAdminType>
+>;
+
+export type addCommentBody = z.SafeParseReturnType<
+  z.infer<typeof addCommentToBlogBody>,
+  z.infer<typeof addCommentToBlogBody>
 >;

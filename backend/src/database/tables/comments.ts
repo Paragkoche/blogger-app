@@ -20,7 +20,9 @@ export class comments {
   @ManyToOne(() => Users, (usr) => usr.comments)
   @JoinColumn()
   user: Users;
-
+  @ManyToMany(() => Users)
+  @JoinTable()
+  likes: Users[];
   @ManyToMany(() => comments)
   @JoinTable()
   comments: comments[];
