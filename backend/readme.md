@@ -36,7 +36,6 @@ Home data
 
 ```text
 cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
-
 ```
 
 - request body
@@ -68,6 +67,57 @@ cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
 ```
 
 ##### Admin Login
+
+Admin Login
+
+- Request body
+
+```json
+{
+  "emailId": "string", //optional
+  "password": "string",
+  "username": "string", //optional
+  "bio": "string" // optional
+}
+```
+
+- response body
+- - 200
+
+```json
+{
+  "message": "[Info] User Login",
+  "data": "$AdminType"
+}
+```
+
+- - 401 (`if body invalid or some required field not fill`)
+
+```json
+[
+  {
+    "message": "string",//message what is mistake
+    "label": "string", //which field
+  },
+  ...
+]
+```
+
+- - 401 (`if email id or username not exits`)
+
+```json
+{
+  "message": "[error] email Id or username Not exists"
+}
+```
+
+- - 401 (`if password not valid`)
+
+```json
+{
+  "message": "[error] password not valid"
+}
+```
 
 ##### Admin sign in
 
