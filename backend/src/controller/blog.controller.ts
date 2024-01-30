@@ -5,6 +5,7 @@ import {
   addBlogBody,
   deleteBlogBody,
   deleteLikeBody,
+  updateBlogBody,
 } from "@/helpers/body.validate";
 import { log } from "@/helpers/console";
 import {
@@ -22,6 +23,7 @@ import {
   DeleteLikeBodyType,
   addSubBodyType,
   deleteBlogBodyType,
+  updateBlogBodyType,
 } from "@/types/body.type";
 
 export const AddBlogController: AddBlogControllerFunctionType = async (
@@ -78,6 +80,46 @@ export const AddBlogController: AddBlogControllerFunctionType = async (
     return res.json({
       message: "[Info] Blog Added",
       data: newBlog,
+    });
+  } catch (e) {
+    log("error", "[server error]", e);
+    return res.status(500).json({
+      message: "[ERROR] Internal server error",
+    });
+  }
+};
+export const updateBlogController: AddBlogControllerFunctionType = async (
+  req,
+  res
+) => {
+  try {
+    const body: updateBlogBodyType = updateBlogBody.safeParse(req.body);
+    if (!body.success) {
+      log("error", "Body data invalid", req.body);
+      return res.status(402).json(
+        body.error.issues.map((v) => ({
+          message: v.message,
+          label: v.path[0],
+        }))
+      );
+    }
+    const blog_data = await BlogRepo.findOne({
+      where: {
+        id: body.data.id,
+      },
+    });
+    if (!blog_data) {
+      return res.status(404).json({
+        message: "[ERROR] blog not found",
+      });
+    }
+    const updateBlog = BlogRepo.save({
+      ...blog_data,
+      ...body.data,
+    });
+    return res.json({
+      message: "[Info] Blog update",
+      data: updateBlog,
     });
   } catch (e) {
     log("error", "[server error]", e);

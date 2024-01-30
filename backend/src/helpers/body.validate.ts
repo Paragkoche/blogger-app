@@ -25,6 +25,39 @@ export const addBlogBody = z.object({
       }
     ),
 });
+export const updateBlogBody = z.object({
+  id: z.string().uuid({
+    message: "[Data Error] blog id not valid",
+  }),
+  title: z
+    .string()
+    .min(1, {
+      message: "[Data Error] Title must me 1 to 250 charter",
+    })
+    .max(250, {
+      message: "[Data Error] Title must me 1 to 250 charter",
+    })
+    .optional(),
+  image: z
+    .string()
+    .url({
+      message: "[Data Error] Image not upload place re-upload it",
+    })
+    .optional(),
+  description: z
+    .string()
+    .trim()
+    .max(5000, {
+      message: "[Data Error] Title must me 1 to 250 charter",
+    })
+    .regex(
+      /^(#{1,6})\s+(.+)$|^\s*\*\s+(.+)$|^\s*\d+\.\s+(.+)$|(\[.+?\])\((.+?)\)/gm,
+      {
+        message: "[Data Error] description always Mark down formant",
+      }
+    )
+    .optional(),
+});
 
 export const AddLinkBlogBody = z.object({
   id: z.string().uuid({

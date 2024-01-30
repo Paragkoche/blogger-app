@@ -10,6 +10,7 @@ import {
   addCommentToBlogBody,
   deleteBlogBody,
   deleteLikeBody,
+  updateBlogBody,
 } from "@/helpers/body.validate";
 import { UserLoginType, UserSignInType } from "@/helpers/user.validate";
 import { z } from "zod";
@@ -36,7 +37,10 @@ export type AddBlogBodyType = z.SafeParseReturnType<
   z.infer<typeof addBlogBody>,
   z.infer<typeof addBlogBody>
 >;
-
+export type updateBlogBodyType = z.SafeParseReturnType<
+  z.infer<typeof updateBlogBody>,
+  z.infer<typeof updateBlogBody>
+>;
 export type AddLinkBlogBodyType = z.SafeParseReturnType<
   z.infer<typeof AddLinkBlogBody>,
   z.infer<typeof AddLinkBlogBody>
