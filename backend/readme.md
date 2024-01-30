@@ -119,6 +119,13 @@ Admin Login
 }
 ```
 
+- response header
+
+```txt
+cookie:token=JWT_TOKEN,Path=/,httpOnly=true;
+
+```
+
 ##### Admin sign in
 
 ##### Admin Update
