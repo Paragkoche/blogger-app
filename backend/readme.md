@@ -76,8 +76,7 @@ Admin Login
 {
   "emailId": "string", //optional
   "password": "string",
-  "username": "string", //optional
-  "bio": "string" // optional
+  "username": "string" //optional
 }
 ```
 
@@ -127,6 +126,56 @@ cookie:token=JWT_TOKEN,Path=/,httpOnly=true;
 ```
 
 ##### Admin sign in
+
+Admin Login
+
+- Request body
+
+```json
+{
+  "emailId": "string", //optional
+  "password": "string",
+  "username": "string", //optional
+  "bio": "string" // optional
+}
+```
+
+- response body
+- - 200
+
+```json
+{
+  "message": "[Info] User Login",
+  "data": "$AdminType"
+}
+```
+
+- - 401 (`if body invalid or some required field not fill`)
+
+```json
+[
+  {
+    "message": "string",//message what is mistake
+    "label": "string", //which field
+  },
+  ...
+]
+```
+
+- - 401 (`if email id or username  exists`)
+
+```json
+{
+  "message": "[error] email Id or username ] exists"
+}
+```
+
+- response header
+
+```txt
+cookie:token=JWT_TOKEN,Path=/,httpOnly=true;
+
+```
 
 ##### Admin Update
 

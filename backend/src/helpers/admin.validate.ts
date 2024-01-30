@@ -50,13 +50,6 @@ export const LoginType = z.object({
         "[Data Error] The username is not valid. Please ensure it contains only letters, numbers, and underscores, and is between 3 and 20 characters in length.",
     })
     .optional(),
-  bio: z
-    .string()
-    .regex(/^.{1,500}$/, {
-      message:
-        "[Data Error] The biography is not valid. Please ensure it is between 1 and 500 characters in length.",
-    })
-    .optional(),
 });
 
 export const UpdateAdminType = z.object({
