@@ -11,7 +11,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/admin-login"
+              type: "object"
+              properties:
+                emailId: 
+                  type: string
+                password:
+                  type: string
+                username:
+                  type: string
+              required:
+                - "emailId"
+                - "password"
       
 
       responses:
@@ -55,7 +65,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/admin-sign-in-body"
+              type: "object"
+              properties:
+                emailId:
+                  type: string
+                password:
+                  type: string
+                username: 
+                  type: string
+                bio:
+                  type: string
+              required:
+                - "emailId"
+                - "password"
+                - "username"
       
 
       responses:
@@ -93,12 +116,70 @@ paths:
                 properties:
                   message:
                     type: string
-  # /update-user:
-  #   post: 
+  /admin/update-user:
+    post: 
+      security:
+        - cookieAuth: []
+      
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                bio: 
+                  type: string
+      
+      responses:
+        200:
+          description: everything is good.
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/admin-schema"
+        401:
+          description: body invalid
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    message: 
+                      type: string
+                    label:
+                      type: string
+  /admin/delete-account:
+    delete:
+      responses:
+        200:
+          description: everything is good.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
 
 
 components:
+  securitySchemes:
+      cookieAuth:        
+         # arbitrary name for the security scheme; will be used in the "security" key later
+        type: apiKey
+        in: cookie
+        name: token 
   schemas:
+    
+      
     admin-schema:
       title: "Admin schema"
       type:  "object"
@@ -116,22 +197,8 @@ components:
         joinedAt:
           type:  string
     
-    admin-sign-in-body:
-      title: "Admin sign in body"
-      type: "object"
-      properties:
-        emailId:
-          type: string
-        password:
-          type: string
-        username: 
-          type: string
-        bio:
-          type: string
-      required:
-        - "emailId"
-        - "password"
-        - "username"
+
+
 
     admin-missing-body:
         title: "Admin missing request body"
@@ -158,16 +225,7 @@ components:
         message:
           type: string
     
-    admin-login:
-      title: "Admin login body"
-      type: "object"
-      properties:
-        emailId: 
-          type: string
-        password:
-          type: string
-        username:
-          type: string
-      required:
-        - "emailId"
-        - "password"
+
+
+security:
+  - cookieAuth: []

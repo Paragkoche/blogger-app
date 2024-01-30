@@ -1,173 +1,136 @@
-## Entry Point
-
----
+## API Points
 
 ### base url
 
-```javascript
-let url = "http://localhost:8081/api/v1";
-```
-
-| name    | link                               |
-| ------- | ---------------------------------- |
-| `user`  | [${url}/user](#users-end-point)    |
-| `blog`  | [`${url}/blog`](#blog-end-point)   |
-| `admin` | [`${url}/admin`](#admin-end-point) |
-
-### USERS End point
-
-#### Schema
-
-##### User Schema (`User schema`)
-
-```JSON
-{
-    "id":"$UUID",
-    "emailId":"$string",
-    "password":"$string",
-}
+```bash
+http://localhost:8081/api/v1
 
 ```
 
-##### User login request body schema
+### entry point
+
+| name      | method                      | link                 |
+| --------- | --------------------------- | -------------------- |
+| `Admin`   | `GET` `POST` `PUT` `DELETE` | [/admin](#admin)     |
+| `Blog`    | `GET` `POST` `PUT` `DELETE` | [/blog](#blog)       |
+| `Comment` | `POST` `GET`                | [/comment](#comment) |
+| `User`    | `POST`                      | [/user](#user)       |
+
+### End Point
+
+#### Admin
+
+| name     | method   | link                              |
+| -------- | -------- | --------------------------------- |
+| HomeData | `GET`    | [/](#home-data)                   |
+| Login    | `POST`   | [/admin-login](#admin-login)      |
+| sign in  | `POST`   | [/update-sign-in](#admin-sign-in) |
+| Update   | `PUT`    | [/update-user](#admin-update)     |
+| Delete   | `DELETE` | [/delete-account](#admin-delete)  |
+
+##### Home Data
+
+Home data
+
+- Request Header
+
+```text
+cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
+
+```
+
+- request body
+
+```bash
+ NULL
+```
+
+- response body
+
+* - 200
 
 ```json
 {
-  "emailId": "$string",
-  "password": "$string"
+  "message": "[INFO] ",
+  "data": {
+    "blog": [], // array of all blog
+    "subs": [] // array of all subscribers
+  }
 }
 ```
 
-##### User login response body schema
-
-- `200`
-
-```Json
-    {
-        "message":"[Info] User Login",
-        "data": "$user-schema"
-    }
-
-```
-
-- `401` (`if invalid body`)
-
-```json
-    [
-    ...
-        {
-            "label":"$string",
-            "message":"$string"
-        }
-    ...
-    ]
-
-```
-
-- `401` (`if email id not exists`)
+- - 500
 
 ```json
 {
-  "message": "[error] email Id or username Not exists"
+  "message": "[ERROR] Internal server error"
 }
 ```
 
-- `401` (`if password not valid`)
+##### Admin Login
 
-```json
-{
-  "message": "[error] password not valid"
-}
+##### Admin sign in
+
+##### Admin Update
+
+##### Admin Delete
+
+#### Blog
+
+#### Comment
+
+#### User
+
+## Schema
+
+### BLOG schema
+
+```ts
+type BlogType = {
+  id: string;
+  slug: string;
+  title: string;
+  image: string;
+  description: string;
+  views: string;
+  createAt: Date;
+  likeBy?: UserType[];
+  admin: AdminType;
+};
 ```
 
-##### Login
+### USER schema
 
-Request body
-
-- [body](#user-login-request-body-schema)
-
-```javascript
-import axios from "axios";
-let loginUrl = `${url}/user/login-user`;
-let body = {}; // accounting login request body schema
-const LoginUser = axios.post(loginUrl, body);
+```ts
+type UserType = {
+  id: string;
+  emailId: string;
+  password: string;
+};
 ```
 
-Response body schema
+### COMMENTS schema
 
-[200](#user-login-response-body-schema)
-
-[401](#user-login-response-body-schema)
-
-##### Sing In
-
-##### User Sing In request body schema
-
-```json
-{
-  "emailId": "$string",
-  "password": "$string"
-}
+```ts
+type CommentsType = {
+  id: string;
+  comment: string;
+  user: UserType;
+  likes: UserType[];
+  comments: CommentsType[];
+};
 ```
 
-##### User Sing In response body schema
+### ADMIN schema
 
-- `200`
-
-```Json
-    {
-        "message":"[Info] User Login",
-        "data": "$user-schema"
-    }
-
+```ts
+type AdminType = {
+  id: string;
+  password: string;
+  username: string;
+  bio: string;
+  joinedAt: Date;
+  blogs: BlogType[];
+  subs: UserType[];
+};
 ```
-
-- `401` (`if invalid body`)
-
-```json
-    [
-    ...
-        {
-            "label":"$string",
-            "message":"$string"
-        }
-    ...
-    ]
-
-```
-
-- `401` (`if email id not exists`)
-
-```json
-{
-  "message": "[error] email Id or username Not exists"
-}
-```
-
-- `401` (`if password not valid`)
-
-```json
-{
-  "message": "[error] password not valid"
-}
-```
-
-#### Admin End point
-
-#### Schema
-
-##### Admin Schema (`Admin schema`)
-
-```JSON
-{
-    "id":"$UUID",
-    "emailId":"$string",
-    "password":"$string",
-    "username":"$string",
-    "bio":"$string",
-    "joinedAt":"$Date",
-}
-
-```
-
-#### Blog End point

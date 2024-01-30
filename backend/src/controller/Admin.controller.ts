@@ -38,6 +38,7 @@ export const HomeData: HomeDataFunction = async (req, res) => {
       },
     });
     return res.json({
+      message: "[INFO] ",
       data: {
         blogs,
         subs: subs[0].subs,

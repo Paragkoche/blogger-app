@@ -16,6 +16,7 @@ router.post("/add-like", UserToken, AddLikeBlogController);
 router.delete("/delete-like", UserToken, DeleteLikeBlogController);
 router.delete("/delete-blog", AdminToken, DeleteBlogController);
 router.post("/add-sub", UserToken, AddSubBlogsController);
+router.put("/update-blog", AdminToken);
 router.get("/:username", GetAllBlogsController);
 router.get("/:username/:blog_slug", GetBlogController);
 

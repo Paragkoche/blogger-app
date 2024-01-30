@@ -15,5 +15,5 @@ router.post(
   addCommentToComment
 );
 router.post("/add-comment-link/:commentId", UserToken, addLikeToComment);
-
+router.get("/get-comment/:blogId");
 export default router;
