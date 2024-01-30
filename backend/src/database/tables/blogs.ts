@@ -10,6 +10,7 @@ import {
 } from "typeorm";
 import { Admin } from "./admin";
 import { Users } from "./users";
+import { comments } from "./comments";
 
 @Entity()
 export class blogs {
@@ -34,6 +35,9 @@ export class blogs {
   @ManyToMany(() => Users, (usr) => usr.blogLike)
   @JoinTable()
   likeBy: Users[];
+  @ManyToMany(() => comments, (usr) => usr.blog)
+  @JoinTable()
+  comments: comments[];
   @ManyToOne(() => Admin, (admin) => admin.blogs)
   @JoinColumn()
   admin: Admin;

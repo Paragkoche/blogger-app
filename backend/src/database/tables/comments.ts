@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Users } from "./users";
+import { blogs } from "./blogs";
 
 @Entity()
 export class comments {
@@ -26,4 +27,7 @@ export class comments {
   @ManyToMany(() => comments)
   @JoinTable()
   comments: comments[];
+  @ManyToMany(() => blogs, (usr) => usr.comments)
+  @JoinTable()
+  blog: blogs[];
 }

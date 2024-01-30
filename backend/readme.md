@@ -127,7 +127,7 @@ cookie:token=JWT_TOKEN,Path=/,httpOnly=true;
 
 ##### Admin sign in
 
-Admin Login
+Admin sign in
 
 - Request body
 
@@ -179,11 +179,91 @@ cookie:token=JWT_TOKEN,Path=/,httpOnly=true;
 
 ##### Admin Update
 
+Admin update
+
+- Request Header
+
+```text
+cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
+```
+
+- Request body
+
+```json
+{
+  "bio": "string" // optional
+}
+```
+
+- response body
+- - 200
+
+```json
+{
+  "message": "[Info] Admin bio update"
+}
+```
+
 ##### Admin Delete
+
+Admin delete
+
+- Request Header
+
+```text
+cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
+```
+
+- Request body
+
+```bash
+NULL
+```
+
+- response body
+- - 200
+
+```json
+{
+  "message": "[Info] Admin delete"
+}
+```
 
 #### Blog
 
+| name                 | method   | link                               |
+| -------------------- | -------- | ---------------------------------- |
+| Add blog             | `POST`   | [/add-blog](#add-blog)             |
+| Add like             | `POST`   | [/add-like](#add-like)             |
+| Delete Like          | `DELETE` | [/delete-like](#add-blog)          |
+| Delete blog          | `DELETE` | [/delete-blog](#add-blog)          |
+| Add sub              | `POST`   | [/add-sub](#add-blog)              |
+| update blog          | `POST`   | [/update-blog](#add-blog)          |
+| Get blog by username | `GET`    | [/:username](#add-blog)            |
+| Get blog by slug     | `GET`    | [/:username/:blog_slug](#add-blog) |
+
+##### Add blog
+
+##### Add like
+
+##### delete like
+
+##### delete blog
+
+##### Add Sub
+
+##### update blog
+
+##### Get all Blog by username
+
+##### Get Blog by Slug
+
 #### Comment
+
+| name | method | link |
+| ---- | ------ | ---- |
+
+|
 
 #### User
 

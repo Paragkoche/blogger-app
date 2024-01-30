@@ -363,6 +363,7 @@ export const GetBlogController: GetBlogControllerFunctionType = async (
       },
       relations: {
         admin: true,
+        comments: true,
       },
     });
     return res.json({

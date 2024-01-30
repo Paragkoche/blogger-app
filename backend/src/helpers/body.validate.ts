@@ -86,4 +86,7 @@ export const addCommentToBlogBody = z.object({
   comment: z.string().min(1, {
     message: "[Data Error] comment not valid or minim 1 charter",
   }),
+  blogId: z.string().uuid({
+    message: "[Data Error] blog id is not valid",
+  }),
 });

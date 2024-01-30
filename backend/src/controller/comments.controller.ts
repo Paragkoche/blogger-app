@@ -1,4 +1,4 @@
-import { CommentRepo } from "@/database";
+import { BlogRepo, CommentRepo } from "@/database";
 import { addCommentToBlogBody } from "@/helpers/body.validate";
 import { log } from "@/helpers/console";
 import { addCommentBody } from "@/types/body.type";
@@ -24,9 +24,18 @@ export const addCommentToBlog: addCommentLikeFunctionType = async (
         }))
       );
     }
+    const blog_data = await BlogRepo.findOne({
+      where: { id: commentBody.data.blogId },
+    });
+    if (!blog_data) {
+      return res.status(404).json({
+        message: "[Not Fount] blog not found",
+      });
+    }
     const data = await CommentRepo.save(
       CommentRepo.create({
         ...commentBody.data,
+        blog: [blog_data],
         user: req.User,
       })
     );
@@ -60,6 +69,14 @@ export const addCommentToComment: addCommentToCommentFunctionType = async (
         }))
       );
     }
+    const blog_data = await BlogRepo.findOne({
+      where: { id: commentBody.data.blogId },
+    });
+    if (!blog_data) {
+      return res.status(404).json({
+        message: "[Not Fount] blog not found",
+      });
+    }
     const CommentExt = await CommentRepo.find({
       where: {
         id: commentId,
@@ -74,6 +91,7 @@ export const addCommentToComment: addCommentToCommentFunctionType = async (
     const data = await CommentRepo.save(
       CommentRepo.create({
         ...commentBody.data,
+        blog: [blog_data],
         user: req.User,
       })
     );
