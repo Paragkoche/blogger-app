@@ -103,7 +103,7 @@ Admin Login
 ]
 ```
 
-- - 401 (`if email id or username not exits`)
+- - 401 (`if email id or username not exists`)
 
 ```json
 {
