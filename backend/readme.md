@@ -306,7 +306,7 @@ cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
 }
 ```
 
-- - 402
+- - 402 (`if any body error`)
 
 ```json
 [
