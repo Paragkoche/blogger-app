@@ -260,12 +260,96 @@ NULL
 
 #### Comment
 
-| name | method | link |
-| ---- | ------ | ---- |
+| name                   | method | link                                                          |
+| ---------------------- | ------ | ------------------------------------------------------------- |
+| crate comment          | `POST` | [/add-comment-to-blog](#create-comment)                       |
+| add comment to comment | `POST` | [/add-comment-to-comment/:commentId](#add-comment-to-comment) |
+| add comment link       | `POST` | [/add-comment-link/:commentId](#add-comment-link)             |
+| get comment            | `GET`  | [/get-comment/:blogId](#get-comment)                          |
 
-|
+##### Create comment
+
+Create Comment
+
+- Request Header
+
+```text
+cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
+
+```
+
+- Request body
+
+```json
+{
+  "comment": "$string",
+  "blogId": "$blog-id"
+}
+```
+
+- response body
+
+* - 200
+
+```json
+{
+  "message": "[Info] comment add",
+  "data": "CommentsType"
+}
+```
+
+- - 404 (`if blog id not found`)
+
+```json
+{
+  "message": "[Not Fount] blog not found"
+}
+```
+
+- - 402
+
+```json
+[
+...
+    {
+    "label":"$string",
+    "message":"$string"
+    },
+...
+]
+
+```
+
+##### Add comment to comment
+
+- Request Header
+
+```text
+cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
+```
+
+##### add comment link
+
+- Request Header
+
+```text
+cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
+```
+
+##### get comment
+
+- Request Header
+
+```text
+cookie: token=JWT_TOKEN,Path=/,httpOnly=true;
+```
 
 #### User
+
+| name       | method | link |
+| ---------- | ------ | ---- |
+| login user | `POST` | []() |
+| sing in    | `POST` | []() |
 
 ## Schema
 
