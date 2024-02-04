@@ -56,3 +56,87 @@ export interface AdminDeleteResponseType {
     message: string;
   };
 }
+
+export interface BlogAddResponseType {
+  402:
+    | {
+        message: string;
+        label: string;
+      }[]
+    | {
+        message: string;
+      };
+  401: {
+    message: string;
+  };
+  200: {
+    message: string;
+    data: BlogSchemaType;
+  };
+  500: {
+    message: string;
+  };
+}
+
+export interface BlogAddLikeResponseType {
+  401: {
+    message: string;
+  };
+  402:
+    | {
+        message: string;
+        label: string;
+      }[]
+    | {
+        message: string;
+      };
+  200: {
+    message: string;
+    data: BlogSchemaType;
+  };
+  500: {
+    message: string;
+  };
+}
+
+export interface BlogDeleteLikeResponseType {
+  401: {
+    message: string;
+  };
+  402:
+    | {
+        message: string;
+        label: string;
+      }[]
+    | {
+        message: string;
+      };
+  200: {
+    message: string;
+    data: BlogSchemaType;
+  };
+  500: {
+    message: string;
+  };
+}
+
+export interface BlogDeleteResponseType {
+  401: {
+    message: string;
+  };
+  402:
+    | {
+        message: string;
+        label: string;
+      }[]
+    | {
+        message: string;
+      };
+  200: {
+    message: string;
+    data: BlogSchemaType;
+  };
+  500: {
+    message: string;
+  };
+}
