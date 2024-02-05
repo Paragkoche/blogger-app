@@ -5,4 +5,30 @@ const URL_SSR = `${process.env.BACKEND_URL}/api/v1`;
 
 // * =============== CSR ( Client Side Rendering ) =================== * //
 
+//TODO * ADMIN * USER * BLOG(ADMIN) * BLOG(USER)
+
+//* ======== ADMIN =========
+const AdminURL = `${URL_CSR}/admin`;
+const AdminLoginUrl = `${AdminURL}/admin-login`;
+const AdminSignUpUrl = `${AdminURL}/admin-sign-in`;
+const AdminHomeDataUrl = `${AdminURL}/`;
+const AdminUpdateDataUrl = `${AdminURL}/update-user`;
+const AdminDeleteAccountUrl = `${AdminURL}/delete-account`;
+//* ======== USER ==========
+const UserUrl = `${URL_CSR}/user`;
+const UserLoginUrl = `${UserUrl}/login-user`;
+const UserSingInUrl = `${UserUrl}/sing-in-user`;
+//* ======== BLOG |ADMIN| ==========
+const BlogURL = `${URL_CSR}/blog`;
+const AdminAddBlog = `${BlogURL}/add-blog`;
+const AdminUpdateBlog = `${BlogURL}/update-blog`;
+const AdminDeleteBlog = `${BlogURL}/delete-blog`;
+//* ======== BLOG |USER| ==========
+const UserAddLikeTOblog = `${BlogURL}/add-like`;
+const userDeleteLikeToBlog = `${BlogURL}/delete-like`;
+const userAddSub = `${BlogURL}/add-sub`;
+
 // * =============== SSR ( Server Side Rendering ) =================== * //
+
+//TODO * blogs
+//* ======== BLOG =========

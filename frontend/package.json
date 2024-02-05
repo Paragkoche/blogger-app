@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
+    "@zodios/core": "^10.9.6",
+    "@zodios/express": "^10.6.1",
     "axios": "^1.6.7",
-    "next": "14.0.4",
+    "next": "^14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
