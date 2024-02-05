@@ -1,4 +1,8 @@
-import { AdminLoginApiFunction } from "@/types/api.types";
+import {
+  AdminLoginApiFunction,
+  AdminSingInApiFunction,
+  AdminUpdateApiFunction,
+} from "@/types/api.types";
 import axios from "axios";
 
 const URL_CSR = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1`;
@@ -18,6 +22,13 @@ const AdminDeleteAccountUrl = `${AdminURL}/delete-account`;
 export const AdminLogin: AdminLoginApiFunction = (data) => {
   return axios.post(AdminLoginUrl, data);
 };
+export const AdminSignUp: AdminSingInApiFunction = (data) => {
+  return axios.post(AdminSignUpUrl, data);
+};
+export const AdminUpdate: AdminUpdateApiFunction = (data) => {
+  return axios.put(AdminUpdateDataUrl, data);
+};
+
 //* ======== USER ==========
 const UserUrl = `${URL_CSR}/user`;
 const UserLoginUrl = `${UserUrl}/login-user`;

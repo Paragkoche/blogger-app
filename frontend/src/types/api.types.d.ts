@@ -11,3 +11,4 @@ export type AdminSingInApiFunction = (data: {
   username: string;
   bio?: string;
 }) => Promise<Axios>;
+export type AdminUpdateApiFunction = (data: { bio?: string }) => Promise<Axios>;
