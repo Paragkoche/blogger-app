@@ -1,3 +1,4 @@
+import { AdminLoginApiFunction } from "@/types/api.types";
 import axios from "axios";
 
 const URL_CSR = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1`;
@@ -14,6 +15,9 @@ const AdminSignUpUrl = `${AdminURL}/admin-sign-in`;
 const AdminHomeDataUrl = `${AdminURL}/`;
 const AdminUpdateDataUrl = `${AdminURL}/update-user`;
 const AdminDeleteAccountUrl = `${AdminURL}/delete-account`;
+export const AdminLogin: AdminLoginApiFunction = (data) => {
+  return axios.post(AdminLoginUrl, data);
+};
 //* ======== USER ==========
 const UserUrl = `${URL_CSR}/user`;
 const UserLoginUrl = `${UserUrl}/login-user`;
@@ -31,4 +35,5 @@ const userAddSub = `${BlogURL}/add-sub`;
 // * =============== SSR ( Server Side Rendering ) =================== * //
 
 //TODO * blogs
+
 //* ======== BLOG =========
