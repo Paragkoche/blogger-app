@@ -1,14 +1,23 @@
-import { Axios, Axios } from "axios";
+import { Axios } from "axios";
+import {
+  AdminLoginBodyType,
+  AdminSingInBodyType,
+  AdminUpdateBodyType,
+} from "./body.types";
 
-export type AdminLoginApiFunction = (data: {
-  emailId?: string;
-  password: string;
-  username?: string;
-}) => Promise<Axios>;
-export type AdminSingInApiFunction = (data: {
-  emailId: string;
-  password: string;
-  username: string;
-  bio?: string;
-}) => Promise<Axios>;
-export type AdminUpdateApiFunction = (data: { bio?: string }) => Promise<Axios>;
+//Admin
+
+export type AdminLoginApiFunction = (
+  data: AdminLoginBodyType
+) => Promise<Axios>;
+export type AdminSingInApiFunction = (
+  data: AdminSingInBodyType
+) => Promise<Axios>;
+export type AdminUpdateApiFunction = (
+  data: AdminUpdateBodyType
+) => Promise<Axios>;
+export type AdminDeleteApiFunction = () => Promise<Axios>;
+
+// BLOG
+
+export type BlogAddApiFunction = (data: {}) => Promise<Axios>;

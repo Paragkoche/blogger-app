@@ -19,6 +19,7 @@ const AdminSignUpUrl = `${AdminURL}/admin-sign-in`;
 const AdminHomeDataUrl = `${AdminURL}/`;
 const AdminUpdateDataUrl = `${AdminURL}/update-user`;
 const AdminDeleteAccountUrl = `${AdminURL}/delete-account`;
+
 export const AdminLogin: AdminLoginApiFunction = (data) => {
   return axios.post(AdminLoginUrl, data);
 };
@@ -26,7 +27,9 @@ export const AdminSignUp: AdminSingInApiFunction = (data) => {
   return axios.post(AdminSignUpUrl, data);
 };
 export const AdminUpdate: AdminUpdateApiFunction = (data) => {
-  return axios.put(AdminUpdateDataUrl, data);
+  return axios.put(AdminUpdateDataUrl, data, {
+    withCredentials: true,
+  });
 };
 
 //* ======== USER ==========
