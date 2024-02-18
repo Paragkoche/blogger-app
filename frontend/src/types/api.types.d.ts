@@ -9,8 +9,16 @@ import {
   UserAddCommentToCommentBlogType,
   UserAddLikeBlogBodyType,
   UserDeleteLikeBlogBodyType,
+  UserLoginBodyType,
+  UserSingInBodyType,
   UserSubBlogBodyType,
 } from "./body.types";
+
+// User
+export type UserLoginApiFunction = (data: UserLoginBodyType) => Promise<Axios>;
+export type UserSingInApiFunction = (
+  data: UserSingInBodyType
+) => Promise<Axios>;
 
 //Admin
 

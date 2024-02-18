@@ -8,9 +8,13 @@ import {
   CommentToCommentBody,
   UserAddLikeBlogBody,
   UserDeleteLikeBlogBody,
+  UserLoginBody,
+  UserSingInBody,
   UserSubBlogBody,
 } from "@/api/body.types";
 import { z } from "zod";
+export type UserLoginBodyType = z.infer<typeof UserLoginBody>;
+export type UserSingInBodyType = z.infer<typeof UserSingInBody>;
 export type AdminLoginBodyType = z.infer<typeof AdminLoginBody>;
 export type AdminSingInBodyType = z.infer<typeof AdminSingInBody>;
 export type AdminUpdateBodyType = z.infer<typeof AdminUpdateBody>;
