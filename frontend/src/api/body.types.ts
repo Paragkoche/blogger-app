@@ -137,7 +137,23 @@ export const UserDeleteLikeBlogBody = z.object({
 });
 
 export const UserSubBlogBody = z.object({
-  blogId: z.string().uuid({
+  AdminId: z.string().uuid({
     message: "[Data Error] is not valid blog Id or uuid",
+  }),
+});
+export const CommentToBlogBody = z.object({
+  comment: z.string().min(1, {
+    message: "[Data Error] comment not valid or minim 1 charter",
+  }),
+  blogId: z.string().uuid({
+    message: "[Data Error] blog id is not valid",
+  }),
+});
+export const CommentToCommentBody = z.object({
+  comment: z.string().min(1, {
+    message: "[Data Error] comment not valid or minim 1 charter",
+  }),
+  blogId: z.string().uuid({
+    message: "[Data Error] blog id is not valid",
   }),
 });

@@ -5,8 +5,11 @@ import {
   AdminLoginBodyType,
   AdminSingInBodyType,
   AdminUpdateBodyType,
+  UserAddCommentToBlogType,
+  UserAddCommentToCommentBlogType,
   UserAddLikeBlogBodyType,
   UserDeleteLikeBlogBodyType,
+  UserSubBlogBodyType,
 } from "./body.types";
 
 //Admin
@@ -40,4 +43,25 @@ export type BlogAddLikeApiFunction = (
 export type BlogDeleteLikeApiFunction = (
   data: UserDeleteLikeBlogBodyType
 ) => Promise<Axios>;
-export type UserSubBlogApiFunction = () => Promise<Axios>;
+export type UserSubBlogApiFunction = (
+  data: UserSubBlogBodyType
+) => Promise<Axios>;
+
+//Blog
+
+export type GetAllBlogByUsername = (data: {
+  username: string;
+}) => Promise<Axios>;
+export type GetBlog = (data: {
+  username: string;
+  blog_slug: string;
+}) => Promise<Axios>;
+
+//Comments
+export type UserAddCommentTOBlogApiFunction = (
+  data: UserAddCommentToBlogType
+) => Promise<Axios>;
+export type UserAddCommentTOCommentApiFunction = (
+  data: UserAddCommentToCommentBlogType
+) => Promise<Axios>;
+export type UserAddCommentLikeApiFunction = () => Promise<Axios>;
