@@ -1,8 +1,12 @@
-import { Axios } from "axios";
+import { Axios, Axios } from "axios";
 import {
+  AdminAddBlogBodyType,
+  AdminDeleteBlogBodyType,
   AdminLoginBodyType,
   AdminSingInBodyType,
   AdminUpdateBodyType,
+  UserAddLikeBlogBodyType,
+  UserDeleteLikeBlogBodyType,
 } from "./body.types";
 
 //Admin
@@ -18,6 +22,22 @@ export type AdminUpdateApiFunction = (
 ) => Promise<Axios>;
 export type AdminDeleteApiFunction = () => Promise<Axios>;
 
-// BLOG
+// BLOG Admin
 
-export type BlogAddApiFunction = (data: {}) => Promise<Axios>;
+export type BlogAddApiFunction = (data: AdminAddBlogBodyType) => Promise<Axios>;
+export type BlogUpdateApiFunction = (
+  data: AdminUpdateApiFunction
+) => Promise<Axios>;
+export type BlogDeleteApiFunction = (
+  data: AdminDeleteBlogBodyType
+) => Promise<Axios>;
+
+// BLOG User
+
+export type BlogAddLikeApiFunction = (
+  data: UserAddLikeBlogBodyType
+) => Promise<Axios>;
+export type BlogDeleteLikeApiFunction = (
+  data: UserDeleteLikeBlogBodyType
+) => Promise<Axios>;
+export type UserSubBlogApiFunction = () => Promise<Axios>;
