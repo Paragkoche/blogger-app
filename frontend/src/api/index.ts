@@ -1,4 +1,6 @@
 import {
+  AdminDeleteApiFunction,
+  AdminHomeApiFunction,
   AdminLoginApiFunction,
   AdminSingInApiFunction,
   AdminUpdateApiFunction,
@@ -10,7 +12,7 @@ const URL_SSR = `${process.env.BACKEND_URL}/api/v1`;
 
 // * =============== CSR ( Client Side Rendering ) =================== * //
 
-//TODO * ADMIN * USER * BLOG(ADMIN) * BLOG(USER)
+//TODO  * USER * BLOG(ADMIN) * BLOG(USER)
 
 //* ======== ADMIN =========
 const AdminURL = `${URL_CSR}/admin`;
@@ -28,6 +30,16 @@ export const AdminSignUp: AdminSingInApiFunction = (data) => {
 };
 export const AdminUpdate: AdminUpdateApiFunction = (data) => {
   return axios.put(AdminUpdateDataUrl, data, {
+    withCredentials: true,
+  });
+};
+export const AdminDelete: AdminDeleteApiFunction = () => {
+  return axios.delete(AdminDeleteAccountUrl, {
+    withCredentials: true,
+  });
+};
+export const AdminHome: AdminHomeApiFunction = () => {
+  return axios.get(AdminHomeDataUrl, {
     withCredentials: true,
   });
 };

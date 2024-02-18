@@ -24,6 +24,7 @@ export type AdminUpdateApiFunction = (
   data: AdminUpdateBodyType
 ) => Promise<Axios>;
 export type AdminDeleteApiFunction = () => Promise<Axios>;
+export type AdminHomeApiFunction = () => Promise<Axios>;
 
 // BLOG Admin
 
