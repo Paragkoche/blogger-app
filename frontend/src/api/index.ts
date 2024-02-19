@@ -22,8 +22,6 @@ const URL_SSR = `${process.env.BACKEND_URL}/api/v1`;
 
 // * =============== CSR ( Client Side Rendering ) =================== * //
 
-//TODO  * USER * BLOG(ADMIN) * BLOG(USER)
-
 //* ======== ADMIN =========
 const AdminURL = `${URL_CSR}/admin`;
 const AdminLoginUrl = `${AdminURL}/admin-login`;
@@ -104,8 +102,6 @@ export const UserAddSubToBlog: UserSubBlogApiFunction = (data) => {
   });
 };
 // * =============== SSR ( Server Side Rendering ) =================== * //
-
-//TODO * blogs
 
 //* ======== BLOG =========
 const BlogSRR_URL = `${URL_SSR}/blog`;
