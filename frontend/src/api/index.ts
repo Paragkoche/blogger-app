@@ -4,6 +4,16 @@ import {
   AdminLoginApiFunction,
   AdminSingInApiFunction,
   AdminUpdateApiFunction,
+  BlogAddApiFunction,
+  BlogAddLikeApiFunction,
+  BlogDeleteApiFunction,
+  BlogDeleteLikeApiFunction,
+  BlogUpdateApiFunction,
+  GetAllBlogByUsername,
+  GetBlog,
+  UserLoginApiFunction,
+  UserSingInApiFunction,
+  UserSubBlogApiFunction,
 } from "@/types/api.types";
 import axios from "axios";
 
@@ -48,18 +58,60 @@ export const AdminHome: AdminHomeApiFunction = () => {
 const UserUrl = `${URL_CSR}/user`;
 const UserLoginUrl = `${UserUrl}/login-user`;
 const UserSingInUrl = `${UserUrl}/sing-in-user`;
+export const UserLogin: UserLoginApiFunction = (data) => {
+  return axios.post(UserLoginUrl, data, { withCredentials: true });
+};
+export const UserSingIn: UserSingInApiFunction = (data) => {
+  return axios.post(UserSingInUrl, data, { withCredentials: true });
+};
 //* ======== BLOG |ADMIN| ==========
 const BlogURL = `${URL_CSR}/blog`;
-const AdminAddBlog = `${BlogURL}/add-blog`;
-const AdminUpdateBlog = `${BlogURL}/update-blog`;
-const AdminDeleteBlog = `${BlogURL}/delete-blog`;
+const AdminAddBlogUrl = `${BlogURL}/add-blog`;
+const AdminUpdateBlogUrl = `${BlogURL}/update-blog`;
+const AdminDeleteBlogUrl = `${BlogURL}/delete-blog`;
+export const AdminAddBlog: BlogAddApiFunction = (data) => {
+  return axios.post(AdminAddBlogUrl, data, { withCredentials: true });
+};
+export const AdminUpdateBlog: BlogUpdateApiFunction = (data) => {
+  return axios.put(AdminUpdateBlogUrl, data, {
+    withCredentials: true,
+  });
+};
+export const AdminDeleteBlog: BlogDeleteApiFunction = (data) => {
+  return axios.delete(AdminDeleteBlogUrl, {
+    data,
+    withCredentials: true,
+  });
+};
 //* ======== BLOG |USER| ==========
-const UserAddLikeTOblog = `${BlogURL}/add-like`;
-const userDeleteLikeToBlog = `${BlogURL}/delete-like`;
-const userAddSub = `${BlogURL}/add-sub`;
-
+const UserAddLikeTOblogUrl = `${BlogURL}/add-like`;
+const userDeleteLikeToBlogUrl = `${BlogURL}/delete-like`;
+const userAddSubUrl = `${BlogURL}/add-sub`;
+export const UserAddLikeTOblog: BlogAddLikeApiFunction = (data) => {
+  return axios.post(UserAddLikeTOblogUrl, data, {
+    withCredentials: true,
+  });
+};
+export const UserDeleteLikeBlog: BlogDeleteLikeApiFunction = (data) => {
+  return axios.delete(userDeleteLikeToBlogUrl, {
+    data,
+    withCredentials: true,
+  });
+};
+export const UserAddSubToBlog: UserSubBlogApiFunction = (data) => {
+  return axios.post(userAddSubUrl, data, {
+    withCredentials: true,
+  });
+};
 // * =============== SSR ( Server Side Rendering ) =================== * //
 
 //TODO * blogs
 
 //* ======== BLOG =========
+
+export const getAllBlogByUsername: GetAllBlogByUsername = (data) => {
+  return axios.get(`${BlogURL}/${data.username}`);
+};
+export const getBlogByUsernameWithSlug: GetBlog = (data) => {
+  return axios.get(`${BlogURL}/${data.username}/${data.blog_slug}`);
+};

@@ -4,6 +4,7 @@ import {
   AdminDeleteBlogBodyType,
   AdminLoginBodyType,
   AdminSingInBodyType,
+  AdminUpdateBlogBodyType,
   AdminUpdateBodyType,
   UserAddCommentToBlogType,
   UserAddCommentToCommentBlogType,
@@ -38,7 +39,7 @@ export type AdminHomeApiFunction = () => Promise<Axios>;
 
 export type BlogAddApiFunction = (data: AdminAddBlogBodyType) => Promise<Axios>;
 export type BlogUpdateApiFunction = (
-  data: AdminUpdateApiFunction
+  data: AdminUpdateBlogBodyType
 ) => Promise<Axios>;
 export type BlogDeleteApiFunction = (
   data: AdminDeleteBlogBodyType
