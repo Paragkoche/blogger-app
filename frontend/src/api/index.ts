@@ -108,10 +108,11 @@ export const UserAddSubToBlog: UserSubBlogApiFunction = (data) => {
 //TODO * blogs
 
 //* ======== BLOG =========
+const BlogSRR_URL = `${URL_SSR}/blog`;
 
 export const getAllBlogByUsername: GetAllBlogByUsername = (data) => {
-  return axios.get(`${BlogURL}/${data.username}`);
+  return axios.get(`${BlogSRR_URL}/${data.username}`);
 };
 export const getBlogByUsernameWithSlug: GetBlog = (data) => {
-  return axios.get(`${BlogURL}/${data.username}/${data.blog_slug}`);
+  return axios.get(`${BlogSRR_URL}/${data.username}/${data.blog_slug}`);
 };
