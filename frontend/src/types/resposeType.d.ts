@@ -92,3 +92,31 @@ export interface AdminDeleteBlogRespType extends InternalServerError {
     };
   };
 }
+
+export interface UserAddLikeBlogRespType extends InternalServerError {
+  402: bodyError[];
+  404: {
+    message: string;
+  };
+  402: {
+    message: string;
+  };
+  200: {
+    message: string;
+    data: BlogSchemaType;
+  };
+}
+
+export interface UserDeleteBlogRespType extends InternalServerError {
+  402: bodyError[];
+  404: {
+    message: string;
+  };
+  401: {
+    message: string;
+  };
+  200: {
+    message: string;
+    data: BlogSchemaType;
+  };
+}

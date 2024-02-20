@@ -202,7 +202,7 @@ export const DeleteLikeBlogController: DeleteLikeBlogControllerFunctionType =
         });
       }
       if (blogExist.likeBy.some((user) => user.id != req.User.id)) {
-        return res.status(402).json({
+        return res.status(401).json({
           message: "[Repetition Error] you did not like this blog",
         });
       }
