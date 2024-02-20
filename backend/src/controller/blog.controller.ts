@@ -59,7 +59,7 @@ export const AddBlogController: AddBlogControllerFunctionType = async (
     });
 
     if (alreadyEexistBlog.length !== 0) {
-      return res.status(402).json({
+      return res.status(401).json({
         message: "[Repetition Error] Blog already existed!",
       });
     }
