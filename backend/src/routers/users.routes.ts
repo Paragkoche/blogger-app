@@ -1,5 +1,6 @@
 import {
   LogInController,
+  LogOutController,
   SingIn,
   verifyController,
 } from "@/controller/User.controller";
@@ -11,5 +12,6 @@ const router = Router();
 router.post("/login-user", LogInController);
 router.post("/sing-in-user", SingIn);
 router.get("/verify", UserToken, verifyController);
+router.post("/log-out", UserToken, LogOutController);
 
 export default router;

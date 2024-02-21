@@ -1,6 +1,7 @@
 import {
   HomeData,
   LogInController,
+  LogOutController,
   SignIn,
   UpdateAdminData,
   deleteAdminAccount,
@@ -14,6 +15,7 @@ const router = Router();
 router.get("/", AdminToken, HomeData);
 // auth
 router.get("/verify", AdminToken, verifyController);
+router.post("/log-out", AdminToken, LogOutController);
 router.post("/admin-login", LogInController);
 router.post("/admin-sign-in", SignIn);
 router.put("/update-user", AdminToken, UpdateAdminData);

@@ -3,12 +3,19 @@ import { log } from "@/helpers/console";
 import { UserLoginType, UserSignInType } from "@/helpers/user.validate";
 import { UserLogInBodyType, UserSingInBodyType } from "@/types/body.type";
 import {
+  LogOutFunction,
   LoginFunction,
   SignInFunction,
   VerifyFunction,
 } from "@/types/user.controller.types";
 import { createToken } from "@/utility/jwt";
 import { password_verify } from "@/utility/password";
+export const LogOutController: LogOutFunction = (req, res) => {
+  res.clearCookie("token");
+  return res.json({
+    message: "[Info] log out successfully",
+  });
+};
 export const verifyController: VerifyFunction = (req, res) => {
   return res.json({
     message: "[Info] Your Authorized",

@@ -28,6 +28,8 @@ const AdminLoginUrl = `${AdminURL}/admin-login`;
 const AdminSignUpUrl = `${AdminURL}/admin-sign-in`;
 const AdminHomeDataUrl = `${AdminURL}/`;
 const AdminUpdateDataUrl = `${AdminURL}/update-user`;
+const AdminVerifyUrl = `${AdminURL}/verify`;
+const AdminLogOutUrl = `${AdminURL}/log-out`;
 const AdminDeleteAccountUrl = `${AdminURL}/delete-account`;
 
 export const AdminLogin: AdminLoginApiFunction = (data) => {
@@ -51,16 +53,38 @@ export const AdminHome: AdminHomeApiFunction = () => {
     withCredentials: true,
   });
 };
+export const AdminVerify = () => {
+  return axios.get(AdminVerifyUrl, {
+    withCredentials: true,
+  });
+};
+export const AdminLogOut = () => {
+  return axios.get(AdminLogOutUrl, {
+    withCredentials: true,
+  });
+};
 
 //* ======== USER ==========
 const UserUrl = `${URL_CSR}/user`;
 const UserLoginUrl = `${UserUrl}/login-user`;
 const UserSingInUrl = `${UserUrl}/sing-in-user`;
+const UserVerifyUrl = `${UserUrl}/verify`;
+const UserLogOutUrl = `${UserUrl}/log-out`;
 export const UserLogin: UserLoginApiFunction = (data) => {
   return axios.post(UserLoginUrl, data, { withCredentials: true });
 };
 export const UserSingIn: UserSingInApiFunction = (data) => {
   return axios.post(UserSingInUrl, data, { withCredentials: true });
+};
+export const UserVerify = () => {
+  return axios.get(UserVerifyUrl, {
+    withCredentials: true,
+  });
+};
+export const UserLogOut = () => {
+  return axios.get(UserLogOutUrl, {
+    withCredentials: true,
+  });
 };
 //* ======== BLOG |ADMIN| ==========
 const BlogURL = `${URL_CSR}/blog`;

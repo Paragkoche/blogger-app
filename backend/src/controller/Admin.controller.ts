@@ -9,6 +9,7 @@ import {
   DeleteAdminDataFunctionType,
   HomeDataFunction,
   LogInFunction,
+  LogOutFunction,
   UpdateAdminDataFunctionType,
   VerifyFunction,
   signInFunction,
@@ -20,6 +21,13 @@ import {
 } from "@/types/body.type";
 import { createToken } from "@/utility/jwt";
 import { password_verify } from "@/utility/password";
+
+export const LogOutController: LogOutFunction = (req, res) => {
+  res.clearCookie("token");
+  return res.json({
+    message: "[Info] log out successfully",
+  });
+};
 
 export const verifyController: VerifyFunction = (req, res) => {
   return res.json({
