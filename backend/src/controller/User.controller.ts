@@ -2,10 +2,19 @@ import { UserRepo } from "@/database";
 import { log } from "@/helpers/console";
 import { UserLoginType, UserSignInType } from "@/helpers/user.validate";
 import { UserLogInBodyType, UserSingInBodyType } from "@/types/body.type";
-import { LoginFunction, SignInFunction } from "@/types/user.controller.types";
+import {
+  LoginFunction,
+  SignInFunction,
+  VerifyFunction,
+} from "@/types/user.controller.types";
 import { createToken } from "@/utility/jwt";
 import { password_verify } from "@/utility/password";
-
+export const verifyController: VerifyFunction = (req, res) => {
+  return res.json({
+    message: "[Info] Your Authorized",
+    data: req.User,
+  });
+};
 export const SingIn: SignInFunction = async (req, res) => {
   try {
     const UserDataBody: UserSingInBodyType = UserSignInType.safeParse(req.body);

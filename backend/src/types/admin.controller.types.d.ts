@@ -6,6 +6,7 @@ export type HomeDataFunction = (
   res: Response
 ) => Promise<Response>;
 
+export type VerifyFunction = (req: AdminRequest, res: Response) => Response;
 export type signInFunction = (req: Request, res: Response) => Promise<Response>;
 export type LogInFunction = (req: Request, res: Response) => Promise<Response>;
 

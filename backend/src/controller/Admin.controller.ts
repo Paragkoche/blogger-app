@@ -10,6 +10,7 @@ import {
   HomeDataFunction,
   LogInFunction,
   UpdateAdminDataFunctionType,
+  VerifyFunction,
   signInFunction,
 } from "@/types/admin.controller.types";
 import {
@@ -19,6 +20,13 @@ import {
 } from "@/types/body.type";
 import { createToken } from "@/utility/jwt";
 import { password_verify } from "@/utility/password";
+
+export const verifyController: VerifyFunction = (req, res) => {
+  return res.json({
+    message: "[Info] Your Authorized",
+    data: req.AdminUser,
+  });
+};
 
 export const HomeData: HomeDataFunction = async (req, res) => {
   try {
