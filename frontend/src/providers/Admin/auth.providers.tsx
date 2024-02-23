@@ -1,28 +1,34 @@
-import { AdminLogOut, AdminVerify, UserLogOut, UserVerify } from "@/api";
-import React, { createContext, useContext, useState } from "react";
+import { AdminLogOut, AdminVerify } from "@/api";
+import { AdminSchemaType } from "@/types/schema.types";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Create a context for authentication
-const AuthContext = createContext({
+const AuthContext = createContext<{
+  isLoggedIn: boolean;
+  logout: () => void;
+  user: AdminSchemaType | null;
+}>({
   isLoggedIn: false,
-  login: () => {},
   logout: () => {},
+  user: null,
 });
-
 // Custom hook for managing authentication
 export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<AdminSchemaType | null>(null);
 
-  const login = () => {
+  useEffect(() => {
     AdminVerify()
-      .then(() => {
+      .then((res) => {
         setIsLoggedIn(true);
+        setUser(res.data.data);
       })
       .catch(() => {
         setIsLoggedIn(false);
       });
-  };
+  }, []);
 
   const logout = () => {
     AdminLogOut()
@@ -35,7 +41,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, logout }}>
       {children}
     </AuthContext.Provider>
   );

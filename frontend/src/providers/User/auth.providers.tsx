@@ -1,10 +1,16 @@
 import { UserLogOut, UserVerify } from "@/api";
+import { UserSchemeType } from "@/types/schema.types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Create a context for authentication
-const AuthContext = createContext({
+const AuthContext = createContext<{
+  isLoggedIn: boolean;
+  logout: () => void;
+  user: UserSchemeType | null;
+}>({
   isLoggedIn: false,
   logout: () => {},
+  user: null,
 });
 
 // Custom hook for managing authentication
@@ -12,17 +18,19 @@ export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<UserSchemeType | null>(null);
 
   useEffect(() => {
     UserVerify()
-      .then(() => {
+      .then((res) => {
         setIsLoggedIn(true);
+        setUser(res.data.data);
       })
       .catch(() => {
         setIsLoggedIn(false);
       });
   }, []);
-  const login = () => {};
+  // const login = () => {};
 
   const logout = () => {
     UserLogOut()
@@ -35,7 +43,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, logout, user }}>
       {children}
     </AuthContext.Provider>
   );
