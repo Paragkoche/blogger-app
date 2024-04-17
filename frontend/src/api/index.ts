@@ -11,9 +11,11 @@ import {
   BlogUpdateApiFunction,
   GetAllBlogByUsername,
   GetBlog,
+  TopBlog,
   UserLoginApiFunction,
   UserSingInApiFunction,
   UserSubBlogApiFunction,
+  searchBLog,
 } from "@/types/api.types";
 import axios from "axios";
 
@@ -109,6 +111,8 @@ export const AdminDeleteBlog: BlogDeleteApiFunction = (data) => {
 const UserAddLikeTOblogUrl = `${BlogURL}/add-like`;
 const userDeleteLikeToBlogUrl = `${BlogURL}/delete-like`;
 const userAddSubUrl = `${BlogURL}/add-sub`;
+
+const searchBlogUrl = `${BlogURL}/search-blog`;
 export const UserAddLikeTOblog: BlogAddLikeApiFunction = (data) => {
   return axios.post(UserAddLikeTOblogUrl, data, {
     withCredentials: true,
@@ -125,14 +129,22 @@ export const UserAddSubToBlog: UserSubBlogApiFunction = (data) => {
     withCredentials: true,
   });
 };
+
+export const searchBlog: searchBLog = (data) => {
+  return axios.get(`${searchBlogUrl}/${data.search}`);
+};
 // * =============== SSR ( Server Side Rendering ) =================== * //
 
 //* ======== BLOG =========
 const BlogSRR_URL = `${URL_SSR}/blog`;
-
+const topBlogUrl = `${URL_SSR}/blog/top-blog`;
 export const getAllBlogByUsername: GetAllBlogByUsername = (data) => {
   return axios.get(`${BlogSRR_URL}/${data.username}`);
 };
 export const getBlogByUsernameWithSlug: GetBlog = (data) => {
   return axios.get(`${BlogSRR_URL}/${data.username}/${data.blog_slug}`);
+};
+
+export const GetTopBlog: TopBlog = () => {
+  return axios.get(topBlogUrl);
 };

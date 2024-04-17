@@ -1,6 +1,15 @@
 import { AdminRequest, UserRequest } from "@/interface/request.interface";
 import type { Request, Response } from "express";
 
+export type SearchBlogControllerFunctionType = (
+  req: Request,
+  res: Response
+) => Promise<Response>;
+export type TopBlogControllerFunctionType = (
+  req: Request,
+  res: Response
+) => Promise<Response>;
+
 export type AddBlogControllerFunctionType = (
   req: AdminRequest,
   res: Response

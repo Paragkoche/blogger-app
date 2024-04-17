@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/components/global/user/Header";
+import { Toaster } from "@/components/ui/toaster";
 import AuthProvider from "@/providers/User/auth.providers";
 
 const Layout = ({
@@ -10,7 +11,8 @@ const Layout = ({
   return (
     <AuthProvider>
       <Header />
-      {children}
+      <main className="sm:px-12 md:px-12 px-4 py-5 ">{children}</main>
+      <Toaster />
     </AuthProvider>
   );
 };

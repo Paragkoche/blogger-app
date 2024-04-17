@@ -16,6 +16,8 @@ import {
   DeleteLikeBlogControllerFunctionType,
   GetAllBlogsControllerFunctionType,
   GetBlogControllerFunctionType,
+  SearchBlogControllerFunctionType,
+  TopBlogControllerFunctionType,
 } from "@/types/blog.controller.types";
 import {
   AddBlogBodyType,
@@ -25,6 +27,62 @@ import {
   deleteBlogBodyType,
   updateBlogBodyType,
 } from "@/types/body.type";
+import { Like } from "typeorm";
+
+export const SearchBlog: SearchBlogControllerFunctionType = async (
+  req,
+  res
+) => {
+  try {
+    const keyword = req.params.keyword;
+    const data = BlogRepo.find({
+      where: {
+        slug: Like(`%${keyword}%`),
+      },
+    });
+    return res.json({
+      message: "[Info]",
+      data,
+    });
+  } catch (e) {
+    log("error", "[server error]", e);
+    return res.status(500).json({
+      message: "[ERROR] Internal server error",
+    });
+  }
+};
+
+export const topBlog: TopBlogControllerFunctionType = async (req, res) => {
+  try {
+    const data = await BlogRepo.find({
+      order: {
+        views: "DESC",
+      },
+      relations: ["admin"],
+      take: 10,
+      select: {
+        id: true,
+        image: true,
+        slug: true,
+        description: true,
+        title: true,
+        views: true,
+        admin: {
+          username: true,
+        },
+      },
+    });
+    return res.json({
+      message: "[Info]",
+      data,
+    });
+  } catch (e) {
+    log("error", "[server error]", e);
+    return res.status(500).json({
+      message: "[ERROR] Internal server error",
+    });
+  }
+};
 
 export const AddBlogController: AddBlogControllerFunctionType = async (
   req,
