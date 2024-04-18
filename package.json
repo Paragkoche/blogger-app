@@ -1,0 +1,14 @@
+{
+  "name": "bloging-app",
+  "version": "1.0.0",
+  "description": "| name        | link               |\r | ----------- | ------------------ |\r | `get start` | [link](#get-start) |",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix backend",
+    "client": "npm run dev --prefix frontend",
+    "dev": "npx concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
